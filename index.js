@@ -23,7 +23,7 @@ let config = {
   prefix: '.',
   antilink: false,
   selfMode: false,
-  owner: process.env.OWNER_NUMBER || '34123456789@s.whatsapp.net'
+  owner: process.env.OWNER_NUMBER || '639641178130@s.whatsapp.net'
 };
 
 // Cargar configuración
