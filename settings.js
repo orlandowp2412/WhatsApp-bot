@@ -11,8 +11,8 @@ global.botNumber = undefined //Ejemplo: 573218138672
 
 //*─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─*
 
-global.owner = ['595974154768', '51900373696', '51921826291']
-global.suittag = '595974154768'
+global.owner = ['639641178130']
+global.suittag = '639641178130'
 global.prems = []
 
 //*─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─*
@@ -25,23 +25,23 @@ global.yukiJadibts = true
 
 //*─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─*
 
-global.botname = "Ꮻꮐꮜꭱꮖ-Ꮯꭺꮲ"
-global.textbot = "Ꮻꮐꮜꭱꮖ, ꮇꭺꭰꭼ ꮃꮖꭲꮋ ᏼꭹ ᎷᎬᏞᏫᎠᏆᎪ"
+global.botname = "Diablo"
+global.textbot = "Diablo, ꮇꭺꭰꭼ ꮃꮖꭲꮋ ᏼꭹ Diablo"
 global.dev = "© ⍴᥆ᥕᥱʳᥱძ ᑲᥡ ᴹᴱᴸᴼᴰᴵᴬ"
-global.author = "© ꮇᥲძᥱ ᥕі𝗍һ ᑲᥡ ᎷᎬᏞᏫᎠᏆᎪ"
-global.etiqueta = "M͟ᴇ͟ʟ͟ᴏ͟ᴅ͟ɪ͟ᴀ"
-global.currency = "¥enes"
+global.author = "© ꮇᥲძᥱ ᥕі𝗍һ ᑲᥡ Diablo"
+global.etiqueta = "Diablo"
+global.currency = "usd"
 global.banner = "https://files.catbox.moe/ezrsc9.jpg"
 global.icono = "https://files.catbox.moe/yuiki1.jpg"
 global.catalogo = fs.readFileSync('./lib/catalogo.jpg')
 
 //*─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─*
 
-global.group = "https://chat.whatsapp.com/EYi0JuSqDj3LYJ83ohRdMm"
-global.community = "https://chat.whatsapp.com/HY3r3RwkOOKCs6OxCzsEFW"
-global.channel = "https://whatsapp.com/channel/0029VbBZ4YX4inoqvA74nA20"
-global.github = "https://github.com/melodiabl/OguriCap-Bot.git"
-global.gmail = "melodiayaoivv@gmail.com"
+global.group = ""
+global.community = ""
+global.channel = ""
+global.github = ""
+global.gmail = ""
 global.ch = {
 ch1: "120363404287449613@newsletter"
 }
