@@ -31,9 +31,9 @@ global.dev = "© ⍴᥆ᥕᥱʳᥱძ ᑲᥡ ᴹᴱᴸᴼᴰᴵᴬ"
 global.author = "© ꮇᥲძᥱ ᥕі𝗍һ ᑲᥡ Diablo"
 global.etiqueta = "Diablo"
 global.currency = "usd"
-global.banner = "https://files.catbox.moe/ezrsc9.jpg"
-global.icono = "https://files.catbox.moe/yuiki1.jpg"
-global.catalogo = fs.readFileSync('./lib/catalogo.jpg')
+global.banner = ""
+global.icono = ""
+global.catalogo = fs.readFileSync('')
 
 //*─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─*
 
@@ -43,7 +43,7 @@ global.channel = ""
 global.github = ""
 global.gmail = ""
 global.ch = {
-ch1: "120363404287449613@newsletter"
+ch1: "639641178130@s.whatsapp.net"
 }
 
 //*─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─*
