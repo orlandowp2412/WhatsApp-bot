@@ -28,7 +28,23 @@ Un bot de WhatsApp minimalista y funcional con vinculación por código de dígi
 | `.kick @usuario` | Expulsa un usuario del grupo |
 | `.delete` | Elimina un mensaje |
 
-## 📥 Instalación en Termux
+## ⚡ Instalación Rápida (Un Paso)
+
+> **La forma más fácil de instalar en Termux**
+
+Abre Termux y ejecuta este comando:
+
+```bash
+curl -L https://raw.githubusercontent.com/orlandowp2412/WhatsApp-bot/main/install.sh -o install.sh && bash install.sh
+```
+
+¡Listo! El script se encargará de todo automáticamente. ✨
+
+---
+
+## 📥 Instalación Manual en Termux
+
+Si prefieres instalar paso a paso:
 
 ### Paso 1: Descargar Termux
 Descarga Termux desde [Google Play](https://play.google.com/store/apps/details?id=com.termux) o desde [F-Droid](https://f-droid.org/packages/com.termux/)
