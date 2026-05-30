@@ -1,20 +1,22 @@
 #!/bin/bash
 
-# 🤖 Script de Instalación Automática - WhatsApp Bot para Termux
+# 🤖 Script de Instalación Automática - WhatsApp Bot para Termux (OPTIMIZADO)
 # ============================================================
 
 echo "╔════════════════════════════════════════╗"
 echo "║  📱 WhatsApp Bot - Instalación Rápida  ║"
+echo "║       (Versión Optimizada)             ║"
 echo "╚════════════════════════════════════════╝"
 echo ""
 
-# Color de texto
+# Colores
 RED='\033[0;31m'
 GREEN='\033[0;32m'
 YELLOW='\033[1;33m'
-NC='\033[0m' # No Color
+BLUE='\033[0;34m'
+NC='\033[0m'
 
-# Función para imprimir con color
+# Funciones
 print_status() {
     echo -e "${GREEN}[✓]${NC} $1"
 }
@@ -27,96 +29,118 @@ print_error() {
     echo -e "${RED}[✗]${NC} $1"
 }
 
-# Función para verificar comando
-command_exists() {
-    command -v "$1" >/dev/null 2>&1
+print_info() {
+    echo -e "${BLUE}[i]${NC} $1"
 }
 
-# Paso 1: Configurar permisos de almacenamiento
+# ===== PASO 1: Permisos de Almacenamiento =====
 echo ""
-print_warning "Paso 1: Configurando permisos de almacenamiento..."
+print_warning "Configurando permisos de almacenamiento..."
 termux-setup-storage 2>/dev/null
 print_status "Permisos configurados"
 
-# Paso 2: Actualizar sistema
+# ===== PASO 2: Actualización Rápida =====
 echo ""
-print_warning "Paso 2: Actualizando sistema (esto puede tomar un tiempo)..."
-apt update -qq && apt upgrade -y -qq
+print_warning "Actualizando el sistema (esto puede tomar 1-2 minutos)..."
+apt update -qq
+apt upgrade -y -qq
+
+if [ $? -ne 0 ]; then
+    print_error "Hubo un problema en la actualización, continuando de todas formas..."
+fi
+
 print_status "Sistema actualizado"
 
-# Paso 3: Instalar dependencias
+# ===== PASO 3: Instalar Dependencias Esenciales =====
 echo ""
-print_warning "Paso 3: Instalando dependencias necesarias..."
-pkg install -y -qq git nodejs ffmpeg imagemagick python
+print_warning "Instalando dependencias esenciales..."
 
-# Verificar que Node.js se instaló correctamente
-if ! command_exists node; then
-    print_error "Node.js no se instaló correctamente. Intentando de nuevo..."
+# Instalar en paralelo para acelerar
+pkg install -y -qq git curl wget 2>/dev/null &
+PID1=$!
+
+pkg install -y -qq nodejs ffmpeg 2>/dev/null &
+PID2=$!
+
+pkg install -y -qq imagemagick python 2>/dev/null &
+PID3=$!
+
+# Esperar a que todas las instalaciones terminen
+wait $PID1 $PID2 $PID3
+
+print_status "Dependencias instaladas"
+
+# ===== PASO 4: Verificar Instalaciones =====
+echo ""
+print_info "Verificando instalaciones..."
+
+if ! command -v node &> /dev/null; then
+    print_warning "Node.js no se encontró, reinstalando..."
     pkg install -y nodejs
 fi
 
-if ! command_exists npm; then
-    print_error "npm no se instaló correctamente. Intentando de nuevo..."
+if ! command -v npm &> /dev/null; then
+    print_warning "npm no se encontró, reinstalando..."
     pkg install -y npm
+fi
+
+if ! command -v git &> /dev/null; then
+    print_error "Git es requerido pero no está instalado"
+    exit 1
+fi
+
+print_status "Todas las dependencias están disponibles"
+
+# ===== PASO 5: Clonar o Actualizar Repositorio =====
+echo ""
+
+if [ -d "WhatsApp-bot" ]; then
+    print_warning "Carpeta 'WhatsApp-bot' encontrada"
+    cd WhatsApp-bot
+    print_info "Actualizando repositorio..."
+    git pull origin main -q 2>/dev/null || print_warning "No se pudo actualizar, usando versión local"
+else
+    print_warning "Clonando repositorio..."
+    git clone https://github.com/orlandowp2412/WhatsApp-bot.git -q
+    if [ $? -ne 0 ]; then
+        print_error "Error al clonar el repositorio"
+        exit 1
+    fi
+    cd WhatsApp-bot
+fi
+
+print_status "Repositorio listo"
+
+# ===== PASO 6: Limpiar y Instalar Dependencias =====
+echo ""
+print_warning "Instalando dependencias del bot (esto tomará algunos minutos)..."
+
+# Limpiar cache de npm
+npm cache clean --force -q
+
+# Eliminar node_modules anterior si existe
+rm -rf node_modules package-lock.json 2>/dev/null
+
+# Instalar con opciones optimizadas para Termux
+npm install --no-optional --legacy-peer-deps --prefer-offline -q
+
+if [ ! -d "node_modules" ]; then
+    print_error "Error: Las dependencias no se instalaron correctamente"
+    print_info "Intentando nuevamente..."
+    npm install --legacy-peer-deps
 fi
 
 print_status "Dependencias instaladas"
 
-# Paso 4: Verificar si el repo ya existe
-echo ""
-if [ -d "WhatsApp-bot" ]; then
-    print_warning "La carpeta 'WhatsApp-bot' ya existe"
-    read -p "¿Deseas actualizar el repositorio? (s/n): " -n 1 -r
-    echo
-    if [[ $REPLY =~ ^[Ss]$ ]]; then
-        cd WhatsApp-bot
-        print_warning "Actualizando repositorio..."
-        git pull origin main -q
-        print_status "Repositorio actualizado"
-    fi
-else
-    print_warning "Paso 4: Clonando repositorio..."
-    git clone https://github.com/orlandowp2412/WhatsApp-bot.git -q
-    cd WhatsApp-bot
-    print_status "Repositorio clonado"
-fi
-
-# Paso 5: Limpiar dependencias anteriores si existen
-echo ""
-print_warning "Paso 5: Preparando dependencias..."
-rm -rf node_modules package-lock.json 2>/dev/null
-print_status "Limpieza completada"
-
-# Paso 6: Instalar dependencias del bot
-echo ""
-print_warning "Paso 6: Instalando dependencias del bot (esto toma varios minutos)..."
-npm install --no-audit --legacy-peer-deps
-
-# Verificar que la instalación fue exitosa
-if [ ! -f "package.json" ] || [ ! -d "node_modules" ]; then
-    print_error "Error: Las dependencias no se instalaron correctamente"
-    exit 1
-fi
-
-print_status "Dependencias del bot instaladas"
-
-# Paso 7: Verificar que npm start existe
-echo ""
-npm run 2>/dev/null | grep -q "start"
-if [ $? -eq 0 ]; then
-    print_status "Script 'start' verificado"
-else
-    print_warning "Verificando scripts disponibles..."
-    npm run
-fi
-
-# Paso 8: Ejecutar el bot
+# ===== PASO 7: Listo para Ejecutar =====
 echo ""
 echo "╔════════════════════════════════════════╗"
-echo "║  🚀 ¡Bot listo para ejecutarse!        ║"
+echo "║  🚀 ¡Instalación completada!           ║"
 echo "╚════════════════════════════════════════╝"
 echo ""
 print_status "Iniciando el bot..."
+echo ""
+echo -e "${BLUE}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
 echo ""
 
 npm start
