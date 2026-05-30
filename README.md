@@ -28,17 +28,27 @@ Un bot de WhatsApp minimalista y funcional con vinculación por código de dígi
 | `.kick @usuario` | Expulsa un usuario del grupo |
 | `.delete` | Elimina un mensaje |
 
-## ⚡ Instalación Rápida (Un Paso)
+## ⚡ Instalación ULTRA RÁPIDA (Recomendado)
 
-> **La forma más fácil de instalar en Termux**
+> **La forma MÁS RÁPIDA de instalar en Termux - ¡Sin trabas!**
 
 Abre Termux y ejecuta este comando:
 
 ```bash
-curl -L https://raw.githubusercontent.com/orlandowp2412/WhatsApp-bot/main/install.sh -o install.sh && bash install.sh
+curl -L https://raw.githubusercontent.com/orlandowp2412/WhatsApp-bot/main/quick-install.sh -o quick-install.sh && bash quick-install.sh
 ```
 
-¡Listo! El script se encargará de todo automáticamente. ✨
+✨ **¡Listo en menos de 5 minutos!** ✨
+
+---
+
+## 🚀 Instalación Rápida (Alternativa)
+
+Si prefieres otra opción rápida:
+
+```bash
+curl -L https://raw.githubusercontent.com/orlandowp2412/WhatsApp-bot/main/install.sh -o install.sh && bash install.sh
+```
 
 ---
 
@@ -82,7 +92,7 @@ npm start
 
 ## 🔐 Vinculación del Bot
 
-1. Cuando ejecutes `npm start`, el bot generará un **código de 6-8 dígitos**
+1. Cuando ejecutes el bot, aparecerá un **código de 6-8 dígitos**
 2. En WhatsApp ve a:
    - **Configuración** → **Dispositivos Vinculados** → **Vincular Dispositivo**
    - O en la opción **Vincular con número**
@@ -126,6 +136,10 @@ git pull origin main
 npm install
 npm start
 ```
+
+### Si se queda trabado en la instalación
+- Presiona `Ctrl+C` para detener
+- Ejecuta nuevamente el comando de instalación ULTRA RÁPIDA
 
 ## 📝 Archivo de Configuración
 
